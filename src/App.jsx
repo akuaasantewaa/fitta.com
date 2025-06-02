@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import { NotificationProvider } from "./context/NotificationContext";
+import { ChatProvider } from "./context/ChatContext";
 import ErrorBoundary from "./components/common/ErrorBoundary";
 import NotificationContainer from "./components/common/NotificationContainer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -13,6 +14,7 @@ import GaragePartnerDashboard from "./pages/GaragePartner/Dashboard";
 import InsuranceDashboard from "./pages/Insurance/Dashboard";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import { NotFound } from "./components/common/ErrorBoundary";
+import ChatInterface from "./components/chat/ChatInterface";
 
 function App() {
   return (
@@ -20,12 +22,16 @@ function App() {
       <ThemeProvider>
         <NotificationProvider>
           <AuthProvider>
-          <Router>
-            <div className="App">
-              {/* Global notification container */}
-              <NotificationContainer position="top-right" />
-              
-              <Routes>
+            <ChatProvider>
+              <Router>
+                <div className="App">
+                  {/* Global notification container */}
+                  <NotificationContainer position="top-right" />
+                  
+                  {/* Global chat interface */}
+                  <ChatInterface />
+                  
+                  <Routes>
                 {/* Public Routes */}
                 <Route 
                   path="/" 
@@ -96,8 +102,9 @@ function App() {
                   } 
                 />
               </Routes>
-            </div>
-          </Router>
+                </div>
+              </Router>
+            </ChatProvider>
           </AuthProvider>
         </NotificationProvider>
       </ThemeProvider>
