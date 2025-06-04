@@ -13,6 +13,7 @@ import VehicleOwnerDashboard from "./pages/VehicleOwner/Dashboard";
 import GaragePartnerDashboard from "./pages/GaragePartner/Dashboard";
 import InsuranceDashboard from "./pages/Insurance/Dashboard";
 import AdminDashboard from "./pages/Admin/Dashboard";
+import AboutPage from "./pages/About/AboutPage";
 import { NotFound } from "./components/common/ErrorBoundary";
 import ChatInterface from "./components/chat/ChatInterface";
 
@@ -40,6 +41,12 @@ function App() {
                       <HomePageEnhanced />
                     </PublicRoute>
                   } 
+                />
+                
+                {/* About Page */}
+                <Route 
+                  path="/about" 
+                  element={<AboutPage />} 
                 />
                 
                 {/* Authentication Routes */}
