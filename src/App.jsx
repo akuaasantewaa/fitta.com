@@ -15,6 +15,7 @@ import InsuranceDashboard from "./pages/Insurance/Dashboard";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import AboutPage from "./pages/About/AboutPage";
 import ServicesPage from "./pages/Services/ServicesPage";
+import ContactPage from "./pages/Contact/ContactPage";
 import { NotFound } from "./components/common/ErrorBoundary";
 import ChatInterface from "./components/chat/ChatInterface";
 
@@ -54,6 +55,12 @@ function App() {
                 <Route 
                   path="/services" 
                   element={<ServicesPage />} 
+                />
+                
+                {/* Contact Page */}
+                <Route 
+                  path="/contact" 
+                  element={<ContactPage />} 
                 />
                 
                 {/* Authentication Routes */}
