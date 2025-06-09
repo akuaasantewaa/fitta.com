@@ -14,6 +14,7 @@ import GaragePartnerDashboard from "./pages/GaragePartner/Dashboard";
 import InsuranceDashboard from "./pages/Insurance/Dashboard";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import AboutPage from "./pages/About/AboutPage";
+import ServicesPage from "./pages/Services/ServicesPage";
 import { NotFound } from "./components/common/ErrorBoundary";
 import ChatInterface from "./components/chat/ChatInterface";
 
@@ -47,6 +48,12 @@ function App() {
                 <Route 
                   path="/about" 
                   element={<AboutPage />} 
+                />
+                
+                {/* Services Page */}
+                <Route 
+                  path="/services" 
+                  element={<ServicesPage />} 
                 />
                 
                 {/* Authentication Routes */}
