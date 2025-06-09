@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../../components/layout/Layout';
+import HeaderEnhanced from '../../components/common/HeaderEnhanced';
+import FooterEnhanced from '../../components/common/FooterEnhanced';
 import Button from '../../components/common/Button';
 import { Card } from '../../components/common/Card';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
@@ -179,9 +180,13 @@ const ServicesPage = () => {
   };
 
   return (
-    <Layout>
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 pt-24 pb-20 overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-secondary-900">
+      {/* Header */}
+      <HeaderEnhanced transparent={false} />
+
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section ref={heroRef} className="relative bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 pt-32 pb-20 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-72 h-72 bg-white rounded-full filter blur-3xl"></div>
@@ -244,7 +249,7 @@ const ServicesPage = () => {
       {/* Services Section Wrapper */}
       <div className="relative">
         {/* Category Filter - Only sticky within services section */}
-        <section className="py-8 bg-white dark:bg-secondary-900 sticky top-24 z-30 shadow-sm">
+        <section className="py-8 bg-white dark:bg-secondary-900 sticky top-20 z-30 shadow-sm">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-center gap-4 overflow-x-auto scrollbar-hide">
               {categories.map((category) => (
@@ -555,7 +560,11 @@ const ServicesPage = () => {
           </div>
         </div>
       </section>
-    </Layout>
+      </main>
+
+      {/* Footer */}
+      <FooterEnhanced />
+    </div>
   );
 };
 
