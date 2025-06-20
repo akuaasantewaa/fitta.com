@@ -170,13 +170,9 @@ const ServicesPage = () => {
     { value: '98%', label: 'Satisfaction Rate', icon: '⭐' }
   ];
 
-  // Scroll to booking section
+  // Navigate to single service page
   const handleBookService = (serviceId) => {
-    if (isAuthenticated) {
-      navigate('/vehicle-owner/book-service', { state: { serviceId } });
-    } else {
-      navigate('/auth/vehicle-owner', { state: { redirectTo: '/vehicle-owner/book-service', serviceId } });
-    }
+    navigate(`/services/${serviceId}`);
   };
 
   return (
@@ -215,7 +211,7 @@ const ServicesPage = () => {
               <Button
                 variant="secondary"
                 size="lg"
-                onClick={() => navigate('/vehicle-owner/book-service')}
+                onClick={() => navigate('/services')}
                 className="min-w-[200px]"
               >
                 Book Service Now
@@ -536,7 +532,7 @@ const ServicesPage = () => {
                 <Button
                   variant="solid"
                   size="lg"
-                  onClick={() => navigate('/vehicle-owner/book-service')}
+                  onClick={() => navigate('/services')}
                   className="bg-white text-secondary-600 hover:bg-neutral-100 min-w-[200px]"
                 >
                   Book Service Now

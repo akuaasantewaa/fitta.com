@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '../../context/AuthContext';
 import { useLocation } from 'react-router-dom';
 import ChatBot from './ChatBot';
 import ChatToggle from './ChatToggle';
@@ -7,7 +6,6 @@ import ChatToggle from './ChatToggle';
 const ChatInterface = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [shouldShowChat, setShouldShowChat] = useState(true);
-  const { isAuthenticated, userType } = useAuth();
   const location = useLocation();
 
   // Hide chat on certain pages

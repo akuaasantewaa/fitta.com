@@ -67,7 +67,7 @@ const LoginForm = ({ userType, onSwitchToRegister }) => {
     
     if (result.success) {
       // Navigate to appropriate dashboard
-      navigate(`/${userType}`);
+      navigate(`/dashboard/${userType}`);
     }
   };
 

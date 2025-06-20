@@ -3,13 +3,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import Button from './Button';
 import ThemeToggle from './ThemeToggle';
-import { useAuth } from '../../context/AuthContext';
 
 const Header = ({ transparent = false }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated, userType, user } = useAuth();
 
   const navigationItems = [
     { name: 'Home', href: '/', exact: true },
@@ -27,11 +25,7 @@ const Header = ({ transparent = false }) => {
   };
 
   const handleGetStarted = () => {
-    if (isAuthenticated) {
-      navigate(`/${userType}`);
-    } else {
-      navigate('/');
-    }
+    navigate('/contact');
   };
 
   return (
@@ -71,36 +65,13 @@ const Header = ({ transparent = false }) => {
           {/* Right side actions */}
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle size="sm" />
-            
-            {isAuthenticated ? (
-              <div className="flex items-center space-x-3">
-                <span className="text-sm text-neutral-600 dark:text-neutral-400">
-                  Welcome, {user?.name}
-                </span>
-                <Button 
-                  variant="primary" 
-                  size="sm"
-                  onClick={handleGetStarted}
-                >
-                  Dashboard
-                </Button>
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <Link to="/auth/vehicle-owner">
-                  <Button variant="ghost" size="sm">
-                    Sign In
-                  </Button>
-                </Link>
-                <Button 
-                  variant="primary" 
-                  size="sm"
-                  onClick={handleGetStarted}
-                >
-                  Get Started
-                </Button>
-              </div>
-            )}
+            <Button 
+              variant="primary" 
+              size="sm"
+              onClick={handleGetStarted}
+            >
+              Get Started
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -147,41 +118,16 @@ const Header = ({ transparent = false }) => {
               ))}
               
               <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800">
-                {isAuthenticated ? (
-                  <div className="space-y-2">
-                    <div className="px-3 py-2 text-sm text-neutral-600 dark:text-neutral-400">
-                      Welcome, {user?.name}
-                    </div>
-                    <Button 
-                      variant="primary" 
-                      className="w-full"
-                      onClick={() => {
-                        handleGetStarted();
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      Dashboard
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    <Link to="/auth/vehicle-owner" onClick={() => setIsMenuOpen(false)}>
-                      <Button variant="ghost" className="w-full">
-                        Sign In
-                      </Button>
-                    </Link>
-                    <Button 
-                      variant="primary" 
-                      className="w-full"
-                      onClick={() => {
-                        handleGetStarted();
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      Get Started
-                    </Button>
-                  </div>
-                )}
+                <Button 
+                  variant="primary" 
+                  className="w-full"
+                  onClick={() => {
+                    handleGetStarted();
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Get Started
+                </Button>
               </div>
             </div>
           </div>

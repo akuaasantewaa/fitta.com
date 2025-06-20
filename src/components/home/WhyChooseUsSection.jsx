@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../common/Button';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
+import { useNotifications } from '../../context/NotificationContext';
 
 const WhyChooseUsSection = () => {
   const navigate = useNavigate();
   const [activeFeature, setActiveFeature] = useState(0);
   
   // Scroll animations
-  const [headerRef, headerVisible] = useScrollAnimation({ threshold: 0.3, once: true });
   const [contentRef, contentVisible] = useScrollAnimation({ threshold: 0.2, once: true });
   const [formRef, formVisible] = useScrollAnimation({ threshold: 0.2, once: true });
   
@@ -87,10 +87,13 @@ const WhyChooseUsSection = () => {
     return () => clearInterval(interval);
   }, [features.length]);
 
+  const { showNotification } = useNotifications();
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    // Navigate to estimates page with form data
+    navigate('/estimates', { state: { formData } });
+    showNotification('Form submitted! Redirecting to estimates page...', 'success');
   };
 
   const handleChange = (e) => {

@@ -64,7 +64,7 @@ const ChooseYourJourneySection = () => {
 
   const handleGetStarted = (path) => {
     if (isAuthenticated) {
-      navigate(`/${userType}`);
+      navigate(`/dashboard/${userType}`);
     } else {
       navigate(path);
     }

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { cn } from '../../utils/cn';
-import { useAuth } from '../../context/AuthContext';
 import { useChat } from '../../context/ChatContext';
 import ChatHeader from './ChatHeader';
 import ChatMessage from './ChatMessage';
@@ -15,7 +14,6 @@ const ChatBot = ({
 }) => {
   const [isMinimized, setIsMinimized] = useState(false);
   const messagesEndRef = useRef(null);
-  const { user, userType } = useAuth();
   const { 
     messages, 
     isTyping, 
@@ -37,26 +35,16 @@ const ChatBot = ({
   // Welcome message on first open
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      const welcomeMessage = getWelcomeMessage(userType, user?.name);
+      const welcomeMessage = getWelcomeMessage();
       // Add welcome message with a slight delay
       setTimeout(() => {
         sendMessage(welcomeMessage, 'system');
       }, 500);
     }
-  }, [isOpen, messages.length, userType, user?.name]);
+  }, [isOpen, messages.length, sendMessage]);
 
-  const getWelcomeMessage = (userType, userName) => {
-    const name = userName ? `, ${userName}` : '';
-    const baseMessage = `Welcome to FITTA Assistant${name}! 👋`;
-    
-    const typeSpecificMessages = {
-      'vehicle-owner': `${baseMessage} I'm here to help you with roadside assistance, service bookings, and any questions about our platform. How can I assist you today?`,
-      'garage-partner': `${baseMessage} I can help you with job notifications, platform navigation, payment inquiries, and quality requirements. What would you like to know?`,
-      'insurance': `${baseMessage} I'm here to assist with claims processing, report formats, platform integration, and analytics. How may I help you?`,
-      'admin': `${baseMessage} I can help with platform management, user oversight, system analytics, and administrative tasks. What do you need assistance with?`
-    };
-
-    return typeSpecificMessages[userType] || `${baseMessage} How can I help you today?`;
+  const getWelcomeMessage = () => {
+    return `Welcome to FITTA Assistant! 👋 I'm here to help you with roadside assistance, service bookings, estimates, and any questions about our platform. How can I assist you today?`;
   };
 
   const handleClose = () => {

@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import useScrollAnimation from "../../hooks/useScrollAnimation";
 import Button from "../common/Button";
 
 const AboutOurStorySection = () => {
+  const navigate = useNavigate();
   const [sectionRef, sectionVisible] = useScrollAnimation({ threshold: 0.2, once: true });
 
   return (
@@ -44,6 +46,7 @@ const AboutOurStorySection = () => {
                 variant="primary"
                 size="lg"
                 className="mt-8"
+                onClick={() => navigate('/how-it-works')}
               >
                 Learn More
               </Button>
