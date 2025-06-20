@@ -4,8 +4,6 @@ import Logo from './Logo';
 import Button from './Button';
 import ThemeToggle from './ThemeToggle';
 import AnnouncementBar from './AnnouncementBar';
-import { useAuth } from '../../context/AuthContext';
-import { useNotifications } from '../../context/NotificationContext';
 import { cn } from '../../utils/cn';
 
 const HeaderEnhanced = ({ transparent = false }) => {
@@ -14,8 +12,6 @@ const HeaderEnhanced = ({ transparent = false }) => {
   const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated, userType, user, logout } = useAuth();
-  const { success } = useNotifications();
 
   const navigationItems = [
     { name: 'Home', href: '/', exact: true },
@@ -42,11 +38,7 @@ const HeaderEnhanced = ({ transparent = false }) => {
   };
 
   const handleGetStarted = () => {
-    if (isAuthenticated) {
-      navigate(`/${userType}`);
-    } else {
-      navigate('/auth/vehicle-owner');
-    }
+    navigate('/contact');
   };
 
   return (
@@ -111,43 +103,14 @@ const HeaderEnhanced = ({ transparent = false }) => {
             {/* Right side actions */}
             <div className="hidden lg:flex items-center space-x-4">
               <ThemeToggle size="sm" className="mr-2" />
-              
-              {isAuthenticated ? (
-                <div className="flex items-center space-x-4">
-                  <div className="text-xs">
-                    <span className="text-secondary-600 dark:text-neutral-400">Hi,</span>
-                    <span className="ml-1 font-semibold text-secondary-800 dark:text-white">{user?.name}</span>
-                  </div>
-                  <Button 
-                    variant="primary" 
-                    size="sm"
-                    onClick={handleGetStarted}
-                    className="shadow-lg hover:shadow-xl"
-                  >
-                    Dashboard
-                  </Button>
-                </div>
-              ) : (
-                <div className="flex items-center space-x-3">
-                  <Link to="/auth/vehicle-owner">
-                    <Button 
-                      variant={transparent && !isScrolled ? "ghost" : "ghost"} 
-                      size="sm"
-                      className={transparent && !isScrolled ? "text-white hover:text-primary-300 border-white/30" : ""}
-                    >
-                      Sign In
-                    </Button>
-                  </Link>
-                  <Button 
-                    variant="primary" 
-                    size="sm"
-                    onClick={handleGetStarted}
-                    className="shadow-lg hover:shadow-xl bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700"
-                  >
-                    Free Estimate
-                  </Button>
-                </div>
-              )}
+              <Button 
+                variant="primary" 
+                size="sm"
+                onClick={handleGetStarted}
+                className="shadow-lg hover:shadow-xl bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700"
+              >
+                Free Estimate
+              </Button>
             </div>
 
             {/* Mobile menu button */}
@@ -233,13 +196,6 @@ const HeaderEnhanced = ({ transparent = false }) => {
                   </svg>
                 </button>
               </div>
-              {isAuthenticated && (
-                <div className="mt-4 p-3 bg-white/50 dark:bg-secondary-800/50 backdrop-blur-sm rounded-lg">
-                  <p className="text-xs text-secondary-600 dark:text-neutral-400">Signed in as</p>
-                  <p className="text-sm font-semibold text-secondary-800 dark:text-white">{user?.name}</p>
-                  <p className="text-xs text-primary-600 dark:text-primary-400 capitalize">{userType?.replace('-', ' ')}</p>
-                </div>
-              )}
             </div>
 
             {/* Navigation Links */}
@@ -295,56 +251,16 @@ const HeaderEnhanced = ({ transparent = false }) => {
 
               {/* Action Buttons */}
               <div className="p-6 space-y-3 border-t border-neutral-200/50 dark:border-secondary-700/50">
-                {isAuthenticated ? (
-                  <>
-                    <Button 
-                      variant="primary" 
-                      className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-lg"
-                      onClick={() => {
-                        handleGetStarted();
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      <span className="flex items-center justify-center gap-2">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                        </svg>
-                        Go to Dashboard
-                      </span>
-                    </Button>
-                    <button
-                      onClick={async () => {
-                        const result = await logout();
-                        if (result.success) {
-                          success('Logged Out', 'You have been successfully logged out');
-                          navigate('/');
-                          setIsMenuOpen(false);
-                        }
-                      }}
-                      className="w-full px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors duration-300"
-                    >
-                      Sign Out
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Button 
-                      variant="primary" 
-                      className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-lg"
-                      onClick={() => {
-                        handleGetStarted();
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      Get Free Estimate
-                    </Button>
-                    <Link to="/auth/vehicle-owner" onClick={() => setIsMenuOpen(false)}>
-                      <Button variant="glass" className="w-full bg-white/50 backdrop-blur-sm">
-                        Sign In
-                      </Button>
-                    </Link>
-                  </>
-                )}
+                <Button 
+                  variant="primary" 
+                  className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-lg"
+                  onClick={() => {
+                    handleGetStarted();
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Get Free Estimate
+                </Button>
               </div>
 
               {/* Bottom Info */}

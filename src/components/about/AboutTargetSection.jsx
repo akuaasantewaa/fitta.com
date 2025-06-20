@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import useScrollAnimation from "../../hooks/useScrollAnimation";
 import Button from "../common/Button";
 
 const AboutTargetSection = () => {
+  const navigate = useNavigate();
   const [sectionRef, sectionVisible] = useScrollAnimation({ threshold: 0.2, once: true });
 
   return (
@@ -84,6 +86,7 @@ const AboutTargetSection = () => {
                 variant="primary"
                 size="lg"
                 className="mt-8"
+                onClick={() => navigate('/careers')}
               >
                 Join Our Mission
               </Button>

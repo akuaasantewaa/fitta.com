@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer, useCallback, useEffect } from 'react';
-import { useAuth } from './AuthContext';
 import { useNotifications } from './NotificationContext';
 import { aiService, aiUtils } from '../services/aiService';
 
@@ -142,19 +141,18 @@ const getMockAIResponse = (message, userType, context) => {
 // Chat Provider Component
 export function ChatProvider({ children }) {
   const [state, dispatch] = useReducer(chatReducer, initialState);
-  const { user, userType, isAuthenticated } = useAuth();
   const { error: notifyError } = useNotifications();
 
   // Initialize conversation
   useEffect(() => {
-    if (isAuthenticated && user && !state.conversationId) {
-      const conversationId = `conv_${user.id}_${Date.now()}`;
+    if (!state.conversationId) {
+      const conversationId = `conv_guest_${Date.now()}`;
       dispatch({ 
         type: CHAT_ACTIONS.SET_CONVERSATION_ID, 
         payload: conversationId 
       });
     }
-  }, [isAuthenticated, user, state.conversationId]);
+  }, [state.conversationId]);
 
   // Send message function
   const sendMessage = useCallback(async (content, sender = 'user') => {
@@ -181,8 +179,8 @@ export function ChatProvider({ children }) {
 
         // Get AI response
         const aiResponse = await aiService.generateResponse(content, {
-          userType,
-          user,
+          userType: 'vehicle-owner', // Default to vehicle-owner for guests
+          user: null,
           messageCount: state.messageCount,
           messages: state.messages,
         });
@@ -225,7 +223,7 @@ export function ChatProvider({ children }) {
         },
       });
     }
-  }, [userType, state.messageCount, user, notifyError]);
+  }, [state.messageCount, state.messages, notifyError]);
 
   // Clear messages function
   const clearMessages = useCallback(() => {

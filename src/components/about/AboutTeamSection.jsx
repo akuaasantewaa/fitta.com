@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import useScrollAnimation from "../../hooks/useScrollAnimation";
 
 const AboutTeamSection = () => {
-  const [activeTeamMember, setActiveTeamMember] = useState(0);
+  const navigate = useNavigate();
   
   // Scroll animations
   const [headerRef, headerVisible] = useScrollAnimation({ threshold: 0.3, once: true });
@@ -207,7 +208,7 @@ const AboutTeamSection = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {teamValues.map((value, index) => (
+              {teamValues.map((value) => (
                 <div
                   key={value.title}
                   className="group relative bg-white dark:bg-secondary-800 rounded-2xl p-6 text-center border border-neutral-200 dark:border-secondary-700 hover:border-primary-300 dark:hover:border-primary-500 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
@@ -239,7 +240,9 @@ const AboutTeamSection = () => {
                 <p className="text-lg text-secondary-600 dark:text-neutral-300 mb-6">
                   We're always looking for passionate individuals who share our vision of transforming Africa's automotive landscape.
                 </p>
-                <button className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300">
+                <button 
+                  onClick={() => navigate('/careers')}
+                  className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300">
                   <span>View Open Positions</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const useScrollAnimation = (options = {}) => {
+export const useScrollAnimation = (options = {}) => {
   const elementRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -37,4 +37,5 @@ const useScrollAnimation = (options = {}) => {
   return [elementRef, isVisible];
 };
 
+// Also export as default for backward compatibility
 export default useScrollAnimation;
