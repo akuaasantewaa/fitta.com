@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.41.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lightningcss": "^1.30.1",

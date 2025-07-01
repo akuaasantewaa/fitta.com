@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import h from '../../assets/images/h.jpg'
 
 const AboutHeroSection = () => {
   const [mounted, setMounted] = useState(false);
@@ -70,7 +71,7 @@ const AboutHeroSection = () => {
 
                   {/* Main Image */}
                   <img
-                    src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=1200&q=80"
+                    src={h}
                     alt="FITTA team collaboration"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
