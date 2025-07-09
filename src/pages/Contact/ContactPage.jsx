@@ -220,7 +220,7 @@ const ContactPage = () => {
                 <Button
                   variant="secondary"
                   size="lg"
-                  onClick={() => (window.location.href = "tel:+233544543220")}
+                  onClick={() => (window.location.href = "tel:+233277859740")}
                   className="min-w-[200px]"
                 >
                   Emergency Call
@@ -242,7 +242,7 @@ const ContactPage = () => {
                   variant="glass"
                   size="lg"
                   onClick={() =>
-                    window.open("https://wa.me/233544543220", "_blank")
+                    window.open("https://wa.me/233277859740", "_blank")
                   }
                   className="min-w-[200px]"
                 >
