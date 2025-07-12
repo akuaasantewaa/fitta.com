@@ -354,7 +354,7 @@ const ContactPage = () => {
                         </div>
                       </div>
                     </div>
-
+{/* 
                     <div className="p-6">
                       <Button
                         variant={method.color}
@@ -380,7 +380,7 @@ const ContactPage = () => {
                           />
                         </svg>
                       </Button>
-                    </div>
+                    </div> */}
                   </Card>
                 </div>
               ))}
@@ -408,7 +408,11 @@ const ContactPage = () => {
                     Send Us A Message
                   </h3>
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form
+                    action="https://formspree.io/f/mldnqqqq"
+                    method="POST"
+                    className="space-y-6"
+                  >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <Input
                         label="Full Name"

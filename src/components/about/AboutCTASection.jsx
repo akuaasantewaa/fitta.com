@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import useScrollAnimation from "../../hooks/useScrollAnimation";
 import Button from "../common/Button";
 
@@ -59,16 +59,14 @@ const AboutCTASection = () => {
               Get Started
             </Button>
 
-            <Button
+            <Link
               variant="ghost"
               size="lg"
-              onClick={() =>
-                (window.location.href = "mailto:comfitta@gmail.com")
-              }
-              className="border-2 border-neutral-600 hover:border-primary-500 text-white"
+              to="/contact"
+              className="bg-secondary-500 hover:bg-secondary-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 px-3 inline-flex items-center justify-center font-semibold transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none uppercase tracking-wider border-2 border-neutral-600 hover:border-primary-500 text-white"
             >
               Contact Sales
-            </Button>
+            </Link>
           </div>
         </div>
       </div>

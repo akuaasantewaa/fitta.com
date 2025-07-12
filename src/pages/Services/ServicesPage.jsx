@@ -208,7 +208,7 @@ const ServicesPage = () => {
             <div className={`flex flex-wrap gap-4 justify-center transition-all duration-1000 delay-400 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
-              <Button
+              {/* <Button
                 variant="secondary"
                 size="lg"
                 onClick={() => navigate('/services')}
@@ -218,7 +218,7 @@ const ServicesPage = () => {
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
-              </Button>
+              </Button> */}
               <Button
                 variant="glass"
                 size="lg"

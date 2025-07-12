@@ -162,7 +162,7 @@ const EstimatesPage = () => {
       {/* Form Section */}
       <section ref={formRef} className="py-20 bg-neutral-50 dark:bg-secondary-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <form onSubmit={handleSubmit} className="bg-white dark:bg-secondary-900 rounded-2xl shadow-xl p-8">
+          <form action="https://formspree.io/f/xzzgnnnb" method="POST" className="bg-white dark:bg-secondary-900 rounded-2xl shadow-xl p-8">
             {/* Step 1: Vehicle Information */}
             {step === 1 && (
               <div className={`space-y-6 transition-all duration-500 ${
